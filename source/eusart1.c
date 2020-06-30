@@ -8,12 +8,12 @@
     eusart1.c
 
   @Summary
-    This is the generated driver implementation file for the EUSART1 driver using MPLAB(c) Code Configurator
+    This is the generated driver implementation file for the EUSART1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs 
 
   @Description
     This header file provides implementations for driver APIs for EUSART1.
     Generation Information :
-        Product Revision  :  MPLAB(c) Code Configurator - 4.15
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs  - 1.36.1
         Device            :  PIC16F15376
         Driver Version    :  2.00
     The generated drivers are tested against the following:
@@ -65,13 +65,13 @@ void EUSART1_Initialize(void)
     // TX9 8-bit; TX9D 0; SENDB sync_break_complete; TXEN enabled; SYNC asynchronous; BRGH hi_speed; CSRC slave; 
     TX1STA = 0x24;
 
-    // Baud Rate = 19200; SP1BRGL 12; 
-    SP1BRGL = 0x0C;
+    // Baud Rate = 115200; SP1BRGL 68; 
+    SP1BRGL = 0x44;
 
-    // Baud Rate = 19200; SP1BRGH 0; 
+    // Baud Rate = 115200; SP1BRGH 0; 
     SP1BRGH = 0x00;
 
-}
+    }
 
 
 uint8_t EUSART1_Read(void)

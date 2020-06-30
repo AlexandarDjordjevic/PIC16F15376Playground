@@ -1,5 +1,5 @@
 /**
-  @Generated MPLAB(c) Code Configurator Source File
+  @Generated PIC10 / PIC12 / PIC16 / PIC18 MCUs  Source File
 
   @Company:
     Microchip Technology Inc.
@@ -8,12 +8,12 @@
     mcc.c
 
   @Summary:
-    This is the mcc.c file generated using MPLAB(c) Code Configurator
+    This is the mcc.c file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs 
 
   @Description:
     This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
-        Product Revision  :  MPLAB(c) Code Configurator - 4.15
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs  - 1.36.1
         Device            :  PIC16F15376
         Driver Version    :  1.02
     The generated drivers are tested against the following:
@@ -46,8 +46,8 @@
 // Configuration bits: selected in the GUI
 
 // CONFIG1
-#pragma config FEXTOSC = ECH    // External Oscillator mode selection bits->EC above 8MHz; PFM set to high power
-#pragma config RSTOSC = HFINT1    // Power-up default value for COSC bits->HFINTOSC (1MHz)
+#pragma config FEXTOSC = OFF    // External Oscillator mode selection bits->Oscillator not enabled
+#pragma config RSTOSC = HFINT32    // Power-up default value for COSC bits->HFINTOSC with OSCFRQ= 32 MHz and CDIV = 1:1
 #pragma config CLKOUTEN = OFF    // Clock Out Enable bit->CLKOUT function is disabled; i/o or oscillator function on OSC2
 #pragma config CSWEN = ON    // Clock Switch Enable bit->Writing to NOSC and NDIV is allowed
 #pragma config FCMEN = ON    // Fail-Safe Clock Monitor Enable bit->FSCM timer enabled
@@ -82,27 +82,26 @@
 #pragma config CP = OFF    // UserNVM Program memory code protection bit->UserNVM code protection disabled
 
 #include "mcc.h"
-#include "Timer0.h"
 
 void SYSTEM_Initialize(void)
 {
 
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
-    T0_Initialize();
+    TMR0_Initialize();
     EUSART1_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)
 {
-    // NOSC HFINTOSC; NDIV 4; 
-    OSCCON1 = 0x62;
+    // NOSC HFINTOSC; NDIV 1; 
+    OSCCON1 = 0x60;
     // CSWHOLD may proceed; SOSCPWR Low power; 
     OSCCON3 = 0x00;
     // MFOEN disabled; LFOEN disabled; ADOEN disabled; SOSCEN disabled; EXTOEN disabled; HFOEN disabled; 
     OSCEN = 0x00;
-    // HFFRQ 4_MHz; 
-    OSCFRQ = 0x02;
+    // HFFRQ 32_MHz; 
+    OSCFRQ = 0x06;
     // MFOR not ready; 
     OSCSTAT = 0x00;
     // HFTUN 0; 
@@ -110,6 +109,6 @@ void OSCILLATOR_Initialize(void)
 }
 
 
-/**
+  /**
  End of File
 */

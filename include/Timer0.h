@@ -10,8 +10,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
-void T0_Initialize();
-void T0_ISR_Handler();
+void TMR0_Initialize();
+void TMR0_ISR_Handler();
 
 extern bool Flag100ms;
 extern bool Flag1s;
