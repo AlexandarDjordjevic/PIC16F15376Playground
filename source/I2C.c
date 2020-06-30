@@ -15,8 +15,8 @@ void I2C_Init(){
     PIR3bits.BCL1IF = 0;
 	
     // enable the interrupts
-    PIE3bits.SSP2IE = 1;
-    PIE3bits.BCL2IE = 1; 
+    PIE3bits.SSP1IE = 1;
+    PIE3bits.BCL1IE = 1; 
 }
 
 void I2C_Start(){
