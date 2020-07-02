@@ -50,75 +50,69 @@
 
 void PIN_MANAGER_Initialize(void)
 {
-    /**
-    LATx registers
-    */   
-    LATE = 0x00;    
-    LATD = 0x00;    
-    LATA = 0x00;    
-    LATB = 0x00;    
-    LATC = 0x00;    
+  /**
+  LATx registers
+    */
+  LATE = 0x00;
+  LATD = 0x00;
+  LATA = 0x00;
+  LATB = 0x00;
+  LATC = 0x00;
 
-    /**
-    TRISx registers
-    */    
-    TRISE = 0x0F;
-    TRISA = 0xFF;
-    TRISB = 0xBF;
-    TRISC = 0xFF;
-    TRISD = 0xFF;
+  /**
+  TRISx registers
+    */
+  TRISE = 0x0F;
+  TRISA = 0xFF;
+  TRISB = 0xFF;
+  TRISC = 0xFF;
+  TRISD = 0xFF;
 
-    /**
-    ANSELx registers
-    */   
-    ANSELC = 0xFF;
-    ANSELB = 0x7F;
-    ANSELD = 0xFF;
-    ANSELE = 0x07;
-    ANSELA = 0xFF;
+  /**
+  ANSELx registers
+    */
+  ANSELC = 0x00;
+  ANSELB = 0x00;
+  ANSELD = 0x00;
+  ANSELE = 0x07;
+  ANSELA = 0xFF;
 
-    /**
-    WPUx registers
-    */ 
-    WPUD = 0x00;
-    WPUE = 0x00;
-    WPUB = 0x00;
-    WPUA = 0x00;
-    WPUC = 0x00;
+  /**
+  WPUx registers
+    */
+  WPUD = 0x00;
+  WPUE = 0x00;
+  WPUB = 0x00;
+  WPUA = 0x00;
+  WPUC = 0x00;
 
-    /**
-    ODx registers
-    */   
-    ODCONE = 0x00;
-    ODCONA = 0x00;
-    ODCONB = 0x00;
-    ODCONC = 0x00;
-    ODCOND = 0x00;
+  /**
+  ODx registers
+    */
+  ODCONE = 0x00;
+  ODCONA = 0x00;
+  ODCONB = 0x00;
+  ODCONC = 0x00;
+  ODCOND = 0x00;
     
+  bool state = GIE;
+  GIE = 0;
+  PPSLOCK = 0x55;
+  PPSLOCK = 0xAA;
+  PPSLOCKbits.PPSLOCKED = 0x00; // unlock PPS
 
+  RB6PPS = 0x0F;   //RB6->EUSART1:TX1;
+  RX1DTPPSbits.RX1DTPPS = 0x0F;   //RB7->EUSART1:RX1;
 
-   
-    
-    
-    bool state = GIE;
-    GIE = 0;
-    PPSLOCK = 0x55;
-    PPSLOCK = 0xAA;
-    PPSLOCKbits.PPSLOCKED = 0x00; // unlock PPS
+  SSP1CLKPPSbits.SSP1CLKPPS = 0x13;   //RC3->MSSP1:SCL1;
+  SSP1DATPPSbits.SSP1DATPPS = 0x14;   //RC4->MSSP1:SDA1;
+  RC3PPS = 0x15;   //RC3->MSSP1:SCL1;
+  RC4PPS = 0x16;   //RC4->MSSP1:SDA1;
+  PPSLOCK = 0x55;
+  PPSLOCK = 0xAA;
+  PPSLOCKbits.PPSLOCKED = 0x01; // lock PPS
 
-    RB6PPS = 0x0F;   //RB6->EUSART1:TX1;
-    RX1DTPPSbits.RX1DTPPS = 0x0F;   //RB7->EUSART1:RX1;
-    
-    SSP1CLKPPSbits.SSP1CLKPPS = 0x13;   //RC3->MSSP1:SCL1;
-    SSP1DATPPSbits.SSP1DATPPS = 0x14;   //RC4->MSSP1:SDA1;
-    RC3PPS = 0x15;   //RC3->MSSP1:SCL1;
-    RC4PPS = 0x16;   //RC4->MSSP1:SDA1;
-
-    PPSLOCK = 0x55;
-    PPSLOCK = 0xAA;
-    PPSLOCKbits.PPSLOCKED = 0x01; // lock PPS
-
-    GIE = state;
+  GIE = state;
 }       
 
 void PIN_MANAGER_IOC(void)

@@ -85,11 +85,12 @@
 
 void SYSTEM_Initialize(void)
 {
-
-    PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
+    PIN_MANAGER_Initialize();
+
     TMR0_Initialize();
     EUSART1_Initialize();
+    I2C1_Initialize(I2C_SPEED_100K); //400 KHz
 }
 
 void OSCILLATOR_Initialize(void)
@@ -106,6 +107,8 @@ void OSCILLATOR_Initialize(void)
     OSCSTAT = 0x00;
     // HFTUN 0; 
     OSCTUNE = 0x00;
+
+    while (!OSCCON3bits.ORDY);
 }
 
 
