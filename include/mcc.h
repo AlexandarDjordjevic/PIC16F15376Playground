@@ -51,6 +51,7 @@
 #include <stdbool.h>
 #include "Timer0.h"
 #include "eusart1.h"
+#include "I2C1.h"
 
 #define _XTAL_FREQ  32000000ul
 
