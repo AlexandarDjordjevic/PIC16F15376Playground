@@ -1,4 +1,6 @@
 #include "Timer0.h"
+#include "I2C1.h"
+#include "I2C2.h"
 
 uint16_t counter = 0;
 bool Flag100ms = false;
@@ -29,7 +31,14 @@ void TMR0_Initialize(){
 }
 
 void TMR0_ISR_Handler(){
+    
     counter++;
+    if(I2C1_TimeoutTimer){
+        I2C1_TimeoutTimer--;
+    }
+    if(I2C2_TimeoutTimer){
+        I2C2_TimeoutTimer--;
+    }
     if ((counter % 100) == 0){
         Flag100ms = true;
         if ((counter % 1000) == 0){

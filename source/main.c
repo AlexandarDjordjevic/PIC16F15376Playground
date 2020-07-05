@@ -16,11 +16,18 @@ int main()
 			Flag100ms = false;
 			if (Flag1s){
 				Flag1s = false;
-				printf("Reading Emissivity!\r\n");
-				if(MLX90615_ReadTemperature(&MLX90615))
+				printf("MLX90615 >\r\n");
+				if(MLX90615_ReadAmbientTemperature(&MLX90615) && MLX90615_ReadObjectTemperature(&MLX90615))
 				{
-					printf("MLX Ambient Temperature: %.2f\r\n", MLX90615.temperature.ambient);
+					printf("\tAmbient temperature: %.2f\r\n\tObject temperature: %.2f\r\n\r\n", 
+							MLX90615.temperature.ambient,
+							MLX90615.temperature.object);
 				}
+				else
+				{
+					printf("\tFail to read sensor!\r\n\r\n");
+				}
+				
 			}
 		}
 	}
